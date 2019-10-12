@@ -3,8 +3,10 @@
 @section('content')
 
     <h2>{{$album}}</h2>
+    @if(!$images)
+        <h3>No images found... :(</h3>
+    @else
     <div class="row">
-
         @foreach($images as $image)
             <div class="col-md-4">
                 <img class="img-thumbnail" src="{{asset(Storage::url($image))}}">
@@ -18,6 +20,7 @@
             </div>
         @endforeach
     </div>
+    @endif
 
     <div class="row">
         <div class="col-2">
@@ -91,7 +94,4 @@
             </div>
         </div>
     </div>
-
-
-
 @endsection

@@ -12,8 +12,10 @@
 */
 
 Route::get('/','GalleryController@index')->name('gallery.index');
+Route::get('/newIndex','GalleryController@newIndex')->name('gallery.newIndex');
 Route::get('/show/{album}','GalleryController@show')->name('gallery.show');
 Route::post('/load','GalleryController@load')->name('gallery.load');
 Route::post('/destroy','GalleryController@destroy')->name('gallery.destroy');
 Route::post('/create','GalleryController@create')->name('gallery.create');
 Route::post('/edit','GalleryController@edit')->name('gallery.edit');
+Route::post('/triangle','GalleryController@triangle')->name('gallery.triangle');

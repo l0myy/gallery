@@ -110,4 +110,42 @@ class GalleryController extends Controller
         return redirect()->route('gallery.show', $request->newAlbumName)->with('message', 'Album created successfully!');
     }
 
+    public function triangle(Request $request)
+    {
+
+        $var = $request->var;
+        if ($var % 2 == 0) {
+            return redirect()->route('gallery.newIndex')->withErrors('Wrong number!');
+        }
+        $center = ($var - 1) / 2;
+
+        $array = array();
+        for ($i = 0; $i < $var; $i++) {
+            $line = "";
+            for ($j = 0; $j < $var; $j++) {
+                if ($i < $center) {
+                    if ($j >= $center - $i && $j <= $center + $i) {
+                        $line = $line . " " . 5;
+                    } else
+                        $line = $line . " " . 0;
+                } else {
+                    if ($j >= $center + $i - $var + 1 && $j <= $center - $i + $var - 1) {
+                        $line = $line . " " . 5;
+
+                    } else
+                        $line = $line . " " . 0;
+                }
+            }
+
+            array_push($array, $line);
+
+        }
+        return view('gallery.triangle', compact('array'));
+
+    }
+
+    public function newIndex()
+    {
+        return view('gallery.newIndex');
+    }
 }

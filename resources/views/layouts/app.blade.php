@@ -36,6 +36,9 @@
                     <a class="nav-link" href="{{route('gallery.create')}}" data-toggle="modal" data-target=".crt-alb">Create
                         album <span class="sr-only"></span></a>
                 </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{route('gallery.newIndex')}}" >Triangle<span class="sr-only"></span></a>
+                </li>
             </ul>
         </div>
     </nav>
