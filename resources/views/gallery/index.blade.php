@@ -14,12 +14,12 @@
                         <div class="card-img"
                              style="background-image: url({{Storage::exists('public/' . $album . '.jpg') ? asset(Storage::url('public/' . $album . '.jpg')) : asset('img/def-album.jpg')}})"></div>
                         <div class="row">
-                            <div class="col-5">
+                            <div class="col-6">
                                 <a href="{{ route('gallery.show',['albumName'=>$album]) }}"
                                    class="btn btn-outline-success">Show album</a>
                             </div>
 
-                            <div class="col-5">
+                            <div class="col-6">
                                 <form action="{{route('gallery.destroy')}}" method="POST" onsubmit="if(confirm('Are you sure?'))
                                         {return true} else {return false}">
                                     @csrf

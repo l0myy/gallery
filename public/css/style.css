@@ -7,6 +7,10 @@ nav,.card{
     margin-bottom: 15px;
 }
 
+.card{
+    max-height: 600px;
+}
+
 .card-img{
     height: 200px;
     background-position: center;
@@ -19,22 +23,17 @@ nav,.card{
     margin-bottom: 10px;
 }
 
-.card-img__max{
-    height: 500px;
-}
-
-
-.card,.col-6, .row,.btn{
+.card,.col-6, .col-2,.btn{
     margin-bottom: 10px;
     margin-top: 10px;
     max-width: 50vw;
 }
 
-.card-btn,.card {
+.card-btn,.card,.col-2{
     display: flex;
 }
 
-.card-btn a{
+.card-btn a,.col-2{
     margin-right: 10px;
 }
 
@@ -50,4 +49,5 @@ nav,.card{
 
 .img-thumbnail{
     width: 100%;
+    max-height: 250px;
 }
