@@ -47,3 +47,6 @@ nav,.card{
     position: absolute ;
     bottom: 0;
 }
+.img-thumbnail{
+    width: 100%;
+}

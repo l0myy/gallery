@@ -5,31 +5,40 @@
     <h2>{{$album}}</h2>
     <div class="row">
 
-    @foreach($images as $image)
-        <div class="col-md-4">
-            <img class = "img-thumbnail" src="{{asset(Storage::url($image))}}">
-            <form action="{{route('gallery.destroy')}}" method="POST" onsubmit="if(confirm('Are you sure?'))
+        @foreach($images as $image)
+            <div class="col-md-4">
+                <img class="img-thumbnail" src="{{asset(Storage::url($image))}}">
+                <form action="{{route('gallery.destroy')}}" method="POST" onsubmit="if(confirm('Are you sure?'))
                                         {return true} else {return false}">
-                @csrf
-                <button type="submit" value="{{$image}}" name="imgName" class="btn btn-1 btn-outline-danger" >Delete image
-                </button>
-            </form>
-        </div>
-    @endforeach
-</div>
+                    @csrf
+                    <button type="submit" value="{{$image}}" name="imgName" class="btn btn-1 btn-outline-danger">Delete
+                        image
+                    </button>
+                </form>
+            </div>
+        @endforeach
+    </div>
 
     <div class="row">
         <div class="col-2">
-            <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target=".chg-cvr">Change сover</button>
+            <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target=".chg-cvr">Change
+                сover
+            </button>
         </div>
         <div class="col-2">
-                <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target=".ld-file">Load new image</button>
+            <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target=".ld-file">Load new
+                image
+            </button>
         </div>
         <div class="col-2">
-            <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target=".edt-alb">Edit album name</button>
+            <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target=".edt-alb">Edit
+                album name
+            </button>
         </div>
         <div class="col-2">
-            <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target=".edt-alb">Delete file</button>
+            <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target=".edt-alb">Delete
+                file
+            </button>
         </div>
     </div>
 

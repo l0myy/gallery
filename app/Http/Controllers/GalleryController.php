@@ -10,23 +10,22 @@ class GalleryController extends Controller
     public function index()
     {
         $newAlbums = array();
-       $albums = Storage::directories('public');
-       foreach ($albums as $album)
-       {
-           array_push($newAlbums, str_replace('public/', '', $album));
-       }
+        $albums = Storage::directories('public');
+        foreach ($albums as $album) {
+            array_push($newAlbums, str_replace('public/', '', $album));
+        }
 
-        return view('gallery.index',compact('newAlbums'));
+        return view('gallery.index', compact('newAlbums'));
     }
 
     public function load(Request $request)
     {
-        $this->validate($request,[
-            'albumName'=>'required',
-            'newFile'=>'required|mimes:jpeg,png,jpg|max:5000'
+        $this->validate($request, [
+            'albumName' => 'required|alpha_dash',
+            'newFile' => 'required|mimes:jpeg,png,jpg|max:5000'
         ]);
 
-        if(!$request->id) {
+        if (!$request->id) {
             $newFileName = str_replace(' ', '-', $request->file('newFile')->getClientOriginalName());
             $newPath = 'public/' . $request->albumName;
 
@@ -36,14 +35,12 @@ class GalleryController extends Controller
                 $path = $request->file('newFile')->storeAs($newPath, $newFileName);
                 return redirect()->back()->with('message', 'Image loaded successfully!');
             }
-        }
-        else
-        {
-            $newFileName = $request->albumName . '.jpg' ;
+        } else {
+            $newFileName = $request->albumName . '.jpg';
             $newPath = 'public/';
 
-                $path = $request->file('newFile')->storeAs($newPath, $newFileName);
-                return redirect()->back()->with('message', 'Image loaded successfully!');
+            $path = $request->file('newFile')->storeAs($newPath, $newFileName);
+            return redirect()->back()->with('message', 'Image loaded successfully!');
         }
 
     }
@@ -52,18 +49,14 @@ class GalleryController extends Controller
     {
         $images = Storage::files('public/' . $album);
 
-        return view('gallery.show',compact('images','album'));
+        return view('gallery.show', compact('images', 'album'));
 
     }
 
     public function destroy(Request $request)
     {
-        $this->validate($request,[
-            'imgName'=>'required',
-            'dirNAme'=>'required'
-        ]);
 
-        if ($request -> dirName) {
+        if ($request->dirName) {
             $dirName = 'public/' . $request->dirName;
 
             Storage::deleteDirectory($dirName);
@@ -72,8 +65,7 @@ class GalleryController extends Controller
                 return back()->withErrors('Something gone wrong!');
             }
             return back()->with('message', 'Album successfully deleted!');
-        }
-        else{
+        } else {
 
             Storage::delete($request->imgName);
             if (Storage::exists($request->imgName)) {
@@ -86,12 +78,12 @@ class GalleryController extends Controller
 
     public function create(Request $request)
     {
-        $this->validate($request,[
-            'albumName'=>'required',
+        $this->validate($request, [
+            'albumName' => 'required|alpha_dash',
 
         ]);
 
-        $albumName = str_replace(' ', '-', $request->albumName);
+        $albumName = $request->albumName;
 
         Storage::makeDirectory('public/' . $albumName);
 
@@ -100,26 +92,22 @@ class GalleryController extends Controller
 
     public function edit(Request $request)
     {
-        $this->validate($request,[
-            'newAlbumName'=>'required',
-            'albumName'=>'required'
+        $this->validate($request, [
+            'newAlbumName' => 'required',
+            'albumName' => 'required'
 
         ]);
 
         $newAlbumName = 'public/' . $request->newAlbumName;
 
-        $newAlbumName = str_replace(' ', '-', $newAlbumName);
-
         $albumName = 'public/' . $request->albumName;
 
-        #Storage::makeDirectory('public/' . $albumName);
-        Storage::move($albumName,$newAlbumName);
-        if(Storage::exists($albumName . '.jpg' ))
-        {
-            Storage::move($albumName . '.jpg',$newAlbumName . '.jpg');
+        Storage::move($albumName, $newAlbumName);
+        if (Storage::exists($albumName . '.jpg')) {
+            Storage::move($albumName . '.jpg', $newAlbumName . '.jpg');
         }
 
-        return redirect()->route('gallery.show',$request->newAlbumName)->with('message', 'Album created successfully!');
+        return redirect()->route('gallery.show', $request->newAlbumName)->with('message', 'Album created successfully!');
     }
 
 }
