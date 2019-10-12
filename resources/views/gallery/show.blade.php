@@ -35,11 +35,6 @@
                 album name
             </button>
         </div>
-        <div class="col-2">
-            <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target=".edt-alb">Delete
-                file
-            </button>
-        </div>
     </div>
 
     <div class="modal fade chg-cvr" tabindex="-2" role="dialog">
