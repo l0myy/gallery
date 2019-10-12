@@ -6,20 +6,23 @@
     @if(!$images)
         <h3>No images found... :(</h3>
     @else
-    <div class="row">
-        @foreach($images as $image)
-            <div class="col-md-4">
-                <img class="img-thumbnail" src="{{asset(Storage::url($image))}}">
-                <form action="{{route('gallery.destroy')}}" method="POST" onsubmit="if(confirm('Are you sure?'))
+        <div class="row">
+            @foreach($images as $key => $image)
+                <div class="col-md-4">
+                    <a data-toggle="modal" data-target=".mod-{{$key}}">
+                        <img class="img-thumbnail" src="{{asset(Storage::url($image))}}">
+                    </a>
+                    <form action="{{route('gallery.destroy')}}" method="POST" onsubmit="if(confirm('Are you sure?'))
                                         {return true} else {return false}">
-                    @csrf
-                    <button type="submit" value="{{$image}}" name="imgName" class="btn btn-1 btn-outline-danger">Delete
-                        image
-                    </button>
-                </form>
-            </div>
-        @endforeach
-    </div>
+                        @csrf
+                        <button type="submit" value="{{$image}}" name="imgName" class="btn btn-1 btn-outline-danger">
+                            Delete
+                            image
+                        </button>
+                    </form>
+                </div>
+            @endforeach
+        </div>
     @endif
 
     <div class="row">
@@ -94,4 +97,18 @@
             </div>
         </div>
     </div>
+
+
+    @foreach($images as $key => $image)
+        <div class="modal fade mod-{{$key}}" tabindex="-2" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="container">
+                        <img class="card-img-top" src="{{asset(Storage::url($image))}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+
 @endsection
