@@ -11,11 +11,10 @@
             <form action="{{route('gallery.destroy')}}" method="POST" onsubmit="if(confirm('Are you sure?'))
                                         {return true} else {return false}">
                 @csrf
-                <button type="submit" value="{{$image}}" name="imgName" class="btn btn-outline-danger" >Delete image
+                <button type="submit" value="{{$image}}" name="imgName" class="btn btn-1 btn-outline-danger" >Delete image
                 </button>
             </form>
         </div>
-
     @endforeach
 </div>
 

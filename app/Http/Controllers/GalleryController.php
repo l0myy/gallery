@@ -21,11 +21,14 @@ class GalleryController extends Controller
 
     public function load(Request $request)
     {
+        $this->validate($request,[
+            'albumName'=>'required',
+            'newFile'=>'required|mimes:jpeg,png,jpg|max:5000'
+        ]);
+
         if(!$request->id) {
             $newFileName = str_replace(' ', '-', $request->file('newFile')->getClientOriginalName());
             $newPath = 'public/' . $request->albumName;
-
-            #dd(Storage::get($newPath . '/' . $newFileName));
 
             if (Storage::exists($newPath . '/' . $newFileName)) {
                 return redirect()->back()->with('error', 'File already exists in this directory.');
@@ -55,6 +58,10 @@ class GalleryController extends Controller
 
     public function destroy(Request $request)
     {
+        $this->validate($request,[
+            'imgName'=>'required',
+            'dirNAme'=>'required'
+        ]);
 
         if ($request -> dirName) {
             $dirName = 'public/' . $request->dirName;
@@ -79,6 +86,11 @@ class GalleryController extends Controller
 
     public function create(Request $request)
     {
+        $this->validate($request,[
+            'albumName'=>'required',
+
+        ]);
+
         $albumName = str_replace(' ', '-', $request->albumName);
 
         Storage::makeDirectory('public/' . $albumName);
@@ -88,6 +100,12 @@ class GalleryController extends Controller
 
     public function edit(Request $request)
     {
+        $this->validate($request,[
+            'newAlbumName'=>'required',
+            'albumName'=>'required'
+
+        ]);
+
         $newAlbumName = 'public/' . $request->newAlbumName;
 
         $newAlbumName = str_replace(' ', '-', $newAlbumName);
@@ -101,7 +119,6 @@ class GalleryController extends Controller
             Storage::move($albumName . '.jpg',$newAlbumName . '.jpg');
         }
 
-       # dd($albumName . 'jpg' );
         return redirect()->route('gallery.show',$request->newAlbumName)->with('message', 'Album created successfully!');
     }
 

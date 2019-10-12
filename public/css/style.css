@@ -37,3 +37,13 @@ nav,.card{
 .card-btn a{
     margin-right: 10px;
 }
+
+.col-md-4{
+    min-width: 300px;
+    min-height: 320px;
+}
+
+.btn-1{
+    position: absolute ;
+    bottom: 0;
+}
