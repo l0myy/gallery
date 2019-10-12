@@ -79,7 +79,7 @@ class GalleryController extends Controller
 
     public function create(Request $request)
     {
-        $albumName = $request->albumName;
+        $albumName = str_replace(' ', '-', $request->albumName);
 
         Storage::makeDirectory('public/' . $albumName);
 
@@ -89,6 +89,9 @@ class GalleryController extends Controller
     public function edit(Request $request)
     {
         $newAlbumName = 'public/' . $request->newAlbumName;
+
+        $newAlbumName = str_replace(' ', '-', $newAlbumName);
+
         $albumName = 'public/' . $request->albumName;
 
         #Storage::makeDirectory('public/' . $albumName);
