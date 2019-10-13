@@ -3,6 +3,23 @@
 @section('content')
 
     <h2>{{$album}}</h2>
+    <div class="row">
+        <div class="col-2">
+            <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target=".chg-cvr">Change
+                сover
+            </button>
+        </div>
+        <div class="col-2">
+            <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target=".ld-file">Load new
+                image
+            </button>
+        </div>
+        <div class="col-2">
+            <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target=".edt-alb">Edit
+                album name
+            </button>
+        </div>
+    </div>
     @if(!$images)
         <h3>No images found... :(</h3>
     @else
@@ -25,23 +42,6 @@
         </div>
     @endif
 
-    <div class="row">
-        <div class="col-2">
-            <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target=".chg-cvr">Change
-                сover
-            </button>
-        </div>
-        <div class="col-2">
-            <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target=".ld-file">Load new
-                image
-            </button>
-        </div>
-        <div class="col-2">
-            <button class="btn btn-outline-secondary" type="button" data-toggle="modal" data-target=".edt-alb">Edit
-                album name
-            </button>
-        </div>
-    </div>
 
     <div class="modal fade chg-cvr" tabindex="-2" role="dialog">
         <div class="modal-dialog modal-lg">
@@ -87,7 +87,7 @@
                     <h2 id="my-h2">Choose new album name</h2>
                     <form action="{{route('gallery.edit')}}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="text" name="newAlbumName" class="form-control-file">
+                        <input type="text" name="newAlbumName" class="form-control-file" autofocus>
                         <input type="hidden" value="{{$album}}" name="albumName">
                         <br>
                         <button type="submit" class="btn btn-outline-secondary">Confirm</button>

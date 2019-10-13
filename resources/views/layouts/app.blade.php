@@ -4,21 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
+    <title>Gallery</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
-    <!-- Styles -->
-
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
@@ -26,21 +14,18 @@
 
 <div class="container">
     <nav class="container navbar navbar-expand (-sm | -md | -lg | -xl)) navbar-light bg-light">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+        <ul class="col-5 navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{route('gallery.index')}}">Home <span
-                                class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{route('gallery.index')}}">Home</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item active offset-2">
                     <a class="nav-link" href="{{route('gallery.create')}}" data-toggle="modal" data-target=".crt-alb">Create
-                        album <span class="sr-only"></span></a>
+                        album </a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{route('gallery.newIndex')}}" >Triangle<span class="sr-only"></span></a>
+                <li class="nav-item active offset-2">
+                    <a class="nav-link" href="{{route('gallery.newIndex')}}" >Triangle</a>
                 </li>
             </ul>
-        </div>
     </nav>
 </div>
 
