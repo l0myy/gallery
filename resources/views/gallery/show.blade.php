@@ -98,17 +98,35 @@
         </div>
     </div>
 
-
     @foreach($images as $key => $image)
-        <div class="modal fade mod-{{$key}}" tabindex="-2" role="dialog">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="container">
-                        <img class="card-img-top" src="{{asset(Storage::url($image))}}">
+    <div class="modal fade mod-{{$key}}" tabindex="-2" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div id="carouselExampleControls{{$key}}" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{asset(Storage::url($image))}}" class="d-block w-100" alt="...">
+                        </div>
+                        @foreach($images as $newKey =>$newImage)
+                            @if($newKey !== $key)
+                        <div class="carousel-item">
+                            <img src="{{asset(Storage::url($newImage))}}" class="d-block w-100" alt="...">
+                        </div>
+                            @endif
+                        @endforeach
                     </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls{{$key}}" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls{{$key}}" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
         </div>
+    </div>
     @endforeach
 
 @endsection
