@@ -12,6 +12,7 @@
 */
 
 Route::get('gallery/','GalleryController@index')->name('gallery.index');
+Route::get('/','GalleryController@index')->name('gallery.index');
 Route::get('gallery/newIndex','GalleryController@newIndex')->name('gallery.newIndex');
 Route::get('gallery/show/{album}','GalleryController@show')->name('gallery.show');
 Route::post('gallery/load','GalleryController@load')->name('gallery.load');
